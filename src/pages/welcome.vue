@@ -1,38 +1,36 @@
 <template>
-  <q-page padding>
+  <q-page class="">
 
-      <div class="row justify-center">
-        <!-- Welcome Card -->
-        <q-card class="bg-white" style="margin-bottom: 20px; max-width: 1220px;">
-          <div class="q-pa-md q-gutter-md text-h6 q-items-center">
+    <div class="row justify-center q-pb-sm">
+      <q-card class="bg-white" style="max-width: 1210px;">
+        <div class="q-pa-md q-gutter-md text-h6 q-items-center">
+          <div class="row justify-center">
+            <q-img
+              alt="PantryPal logo"
+              src="https://preudbpdnhcigtnuiuit.supabase.co/storage/v1/object/public/images/PantryPal_Logo_noBG.png?t=2023-11-19T00%3A53%3A32.290Z"
+              fit="contain"
+              style="width: 30%;"
+            />
+            </div>
             <div class="row justify-center">
-              <q-img
-                alt="PantryPal logo"
-                src="https://preudbpdnhcigtnuiuit.supabase.co/storage/v1/object/public/images/PantryPal_Logo_noBG.png?t=2023-11-19T00%3A53%3A32.290Z"
-                fit="contain"
-                style="width: 30%;"
-              />
+              <div class="q-px-lg q-py-md text-h5 text-center">
+                Welcome to PantryPal! Connect with donators or food charities to make a difference in your community.
               </div>
-              <div class="row justify-center">
-                <div class="q-px-lg q-py-md text-h5 text-center">
-                  Welcome to PantryPal! Connect with donators or food charities to make a difference in your community.
-                </div>
-                <div class="row justify-center"><div class="q-px-lg q-py-md text-body1 text-center">
-                  Created by four students at the University of Florida, PantryPal seeks to impact communites across the US.  
-                  For restaurants, fast food chains, hotels, grocery stores, and more who have excess food or food waste, 
-                  PantryPal is an app that allows for businesses to easily donate their leftovers to local shelters and community 
-                  organizations. Unlike complicated, larger scale food donation operations PantryPal has a local and 
-                  community-centric focus, making food donation a simple and seamless experience between community organizations and establishments. 
-                </div>
+              <div class="row justify-center"><div class="q-px-lg q-py-md text-body1 text-center">
+                Created by four students at the University of Florida, PantryPal seeks to impact communites across the US.  
+                For restaurants, fast food chains, hotels, grocery stores, and more who have excess food or food waste, 
+                PantryPal is an app that allows for businesses to easily donate their leftovers to local shelters and community 
+                organizations. Unlike complicated, larger scale food donation operations PantryPal has a local and 
+                community-centric focus, making food donation a simple and seamless experience between community organizations and establishments. 
               </div>
             </div>
           </div>
-        </q-card>
-      </div>
+        </div>
+      </q-card>
+    </div>
 
-    <div class="row justify-center">
-
-      <q-card class="bg-white" style="max-width: 600px; margin-right: 20px;">
+    <div class="row justify-center q-gutter-sm">
+      <q-card class="bg-white" style="max-width: 600px;">
         <div class="q-px-lg q-py-md">
           <q-timeline color="secondary">
             <q-timeline-entry heading>
@@ -130,22 +128,20 @@
               </q-timeline-entry>
             </q-timeline>
           </div>
-        </q-card>
+      </q-card>
     </div>
+
   </q-page>
 </template>
-
-    
 
 <script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'IndexPage',
+  name: 'WelcomePage',
   data () {
     return {
-      // dataFromOracle: []
-
+      
     }
   }
 })
