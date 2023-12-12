@@ -1,36 +1,17 @@
 # CEN3031group15
 
-## Client
-
 ### Setup environment
 
-1. Install nvm
-2. Install npm with nvm
-3. Intall quasar CLI
+1. npm install
+2. Intall quasar CLI
     - `npm install -g @quasar/cli`
-4. Install JSON-Server  
-    - `npm install -g json-server`
-    - [More directions](https://www.npmjs.com/package/json-server01)
-5. Install JSON Server Auth
-    - `npm install -g json-server-auth`
-    - [More directions](https://www.npmjs.com/package/json-server-auth)
-6. Install dotenv of environment variables
-    - from /client run `npm install dotenv`
-    - create a file called `.env` in /client and add the following line:
+3. Env Variables
+    - create a file called `.env`  and add the following line:
         - SUPABASE_KEY="supbase-key-here"
-        - Get the supabase key [here](https://supabase.com/dashboard/project/preudbpdnhcigtnuiuit/settings/api).
     
-
-### Start Client
-From /client directory:
-1. Start JSON server
-    - Doesn't work with Cypress: `json-server-auth --watch db.json`
-    - Does work with Cypress: `json-server-auth --watch db.json --host 0.0.0.0`
+### Start App
 2. Start Quasar dev server
     - `quasar dev`
-3. Start Quasar and JSON server
-    - `npm run dev`
-    - located in package.json
 
 ### Cypress Testing
 #### Install 
