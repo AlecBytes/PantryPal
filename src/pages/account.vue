@@ -187,7 +187,6 @@ import { useQuasar } from 'quasar'
 import { defineComponent } from 'vue'
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
-import { watch} from 'vue'
 
 export default defineComponent({
   name: 'AccountPage',
@@ -213,7 +212,6 @@ export default defineComponent({
     const userInfo = ref({});
     const reservedInfoMap = ref(new Map());
     
-    // TODO: I think some of these functions can be moved into fecthDonations
     onMounted(async () => {
       fetchDonations();
       fetchMessages();
@@ -365,18 +363,13 @@ export default defineComponent({
           }
 
         }
-        else
-        {
-          console.log("Error identifying current user");
-        }
+        else { console.log("Error identifying current user") };
 
         // update location of donation on page
         pantryItems_expired.value.push(pantry_item);
         pantryItems_active.value.splice(pantryItems_active.value.indexOf(pantry_item), 1);
 
-     } catch (error) {
-        console.error('Caught exception canceling donation', error.message);
-     }
+     } catch (error) { console.error('Caught exception canceling donation', error.message) };
     };
 
     const showActive = () => {
@@ -409,9 +402,7 @@ export default defineComponent({
       // remove notification from page
       fetchMessages();
 
-        } catch (error) {
-          console.error('Failed to dismiss message:', error.message);
-        }
+        } catch (error) { console.error('Failed to dismiss message:', error.message) };
     };
 
     const formatMessageTime = (time) => {
@@ -434,7 +425,6 @@ export default defineComponent({
       clickedReview.value = true;
     };
 
-    // function to fill reviewedDonations array with donations that have been reviewed
     const getReviewedDonations = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       
@@ -561,13 +551,7 @@ export default defineComponent({
             time: new Date()
           })
           .eq('donation_id', pantry_item.id);
-
-        if (notificationError) {
-          console.error('Error updating Notifications:', notificationError);
-          return;
-        } else {
-          console.log('Notification successfully added.');
-        }
+        if (notificationError) { console.error('Error updating Notifications:', notificationError) };
 
       }
       // Else if current user is the donatee, update the notification table for the donator
@@ -584,28 +568,16 @@ export default defineComponent({
             time: new Date()
           })
           .eq('donation_id', pantry_item.id);
-
-        if (notificationError) {
-          console.error('Error updating Notifications:', notificationError);
-          return;
-        } else {
-          console.log('Notification successfully added.');
-        }
-
+        if (notificationError) { console.error('Error updating Notifications:', notificationError) };
       }
-      else
-      {
-        console.log("current user id does not match donator_id or donatee_id");
-      }
+      else { console.log("current user id does not match donator_id or donatee_id") };
 
       // update location of donation on page
       pantryItems_active.value.splice(pantryItems_active.value.indexOf(pantry_item), 1);
       pantryItems_expired.value.push(pantry_item);
 
       }
-      catch (error) {
-        console.error('Caught error completing order:', error.message);
-      }
+      catch (error) { console.error('Caught error completing order:', error.message) };
 
     };
 
