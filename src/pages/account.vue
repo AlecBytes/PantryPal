@@ -44,29 +44,6 @@
     <!-- Account Info -->
     <q-card style="display: flex; height: 235px;">
 
-      <!-- User Rating -->
-      <!-- <q-card style="flex: 3; display: flex; align-items: center; justify-content: center;">
-        <div class="q-pa-md">
-          <div class="q-gutter-y-md" style="text-align: center; margin-block: 8px; margin-left: 12px;">
-            <div style="display: flex; align-items: center; justify-content: center;">
-              <div class="text-h6">My Community Rating</div>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center;">
-              <q-rating
-                v-model="myRatingTotal"
-                size="2em"
-                color="secondary"
-                icon="star_border"
-                icon-half="star_half"
-                icon-selected="star"
-                readonly
-              />
-            </div>
-          </div>
-        </div>
-      </q-card> -->
-
-
       <!-- Account Info Section -->
       <q-card style="flex: 12; max-height: 10px;">
         <div class="q-pa-xs">
@@ -110,6 +87,7 @@
     </q-card>
     <div v-if="showActiveItems" class="row q-gutter-md" style="margin-top: 5px;">
       <q-card class="donationCards bg-secondary text-white" v-for="(pantry_item, index) in pantryItems_active" :key="index">
+        <!-- TODO: Use q-items isntead of divs -->
         <q-card-section>
           <div class="text-primary"> Expires: {{ pantry_item.date_expires }} </div>
           <div class="text-h6">{{ pantry_item.org }}</div>
@@ -296,8 +274,6 @@ export default defineComponent({
     };
 
     const fetchMessages = async () => {
-      console.log("fetching messages")
-
       try {
         // get current user id
         let { data: { user } } = await supabase.auth.getUser()
@@ -318,15 +294,11 @@ export default defineComponent({
         if (error) {
           throw new Error('Failed to fetch messages, error: ' + error.message);
         }
-
         messages.value = data;
 
       } catch (error) {
         console.error('Failed to fetch messages:', error.message);
       }
-
-      console.log("done fetching messages")
-
     };
 
     onMounted(async () => {
@@ -334,9 +306,10 @@ export default defineComponent({
       fetchMessages();
       fetchUserInfo();
       fetchDonateeInfo();
-      let todayDate = new Date();
-      today.value = todayDate.toISOString().split('T')[0];
-      todayDate.setHours(0, 0, 0, 0);
+
+      // let todayDate = new Date();
+      // today.value = todayDate.toISOString().split('T')[0];
+      // todayDate.setHours(0, 0, 0, 0);
 
       // Check review status for completed donnations when the page is mounted
       await getReviewedDonations();
