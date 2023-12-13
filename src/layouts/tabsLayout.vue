@@ -69,46 +69,45 @@ export default defineComponent({
   name: 'TabledLayout',
 
   setup () {
-    const $q = useQuasar() // used for notifications
-    const router = useRouter(); // used to redirect to other pages
-    const isLoggedIn = ref(false) // used for conditional rendering
-    const userEmail = ref(null) // used to display the user's email in the dropdown menu
-    const userRole = ref(false); // used to store current user role
+    const $q = useQuasar() // notifications
+    const router = useRouter(); // redirect to other pages
+    const isLoggedIn = ref(false) // conditional rendering
+    const userEmail = ref(null) // display the user's email in the dropdown menu
+    const userRole = ref(false); // current user role
 
     // Checks for logged in user and sets the isLoggedIn variable that is used for conditional rendering
     const setLogInStatus = async () => {
       try {
-        // get the logged in user with the current existing session
-        const { data: { user } } = await supabase.auth.getUser()
+        const { data, error } = await supabase.auth.getSession()
+        if (error) {
+          console.error('Failed to fetch session:', error.message);
+        }
+        const user = data.session?.user;
 
-        // if user is not null then isLoggedIn is true
-        if (user) {
-
+        if (user) { 
+          isLoggedIn.value = true;
+          userEmail.value = user.email;
+          
           const { data, error } = await supabase
           .from('Accounts')
           .select('Donation_Status')
           .eq('user_id', user.id);
-
-          userEmail.value = user.email;
-          isLoggedIn.value = true;
-
-          if (data[0].Donation_Status) {
-            userRole.value = true;
-          } else {
-            userRole.value = false;
+          if (error) {
+            console.error('Failed to fetch donation status:', error.message);
           }
+          userRole.value = data[0]?.Donation_Status || false;
+
         }
         else {
           isLoggedIn.value = false;
           userEmail.value = null;
+          userRole.value = false;
         }
       } catch (error) {
         console.error('Failed to fetch current user:', error.message);
       }
     };
 
-    // Logs out the user and redirects to the sign in page
-    // called when user clicks the log out button
     const logOut = async () => {
 
       // Sign out from Supabase Auth
@@ -138,10 +137,10 @@ export default defineComponent({
       }
     };
 
-    // when the component is updated or mounted, check if the user is logged in
     onUpdated( () => {
       setLogInStatus();
-    }),
+    })
+
     onMounted( () => {
       setLogInStatus();
     })
