@@ -160,7 +160,7 @@
           </q-card-section>
           <q-card-section>
             <div style="display: flex; flex-direction: column; align-items: center;">
-              <q-form @submit="onSubmit" class="q-gutter-md">
+              <q-form  class="q-gutter-md">
                 <q-rating
                   name="numStars"
                   v-model="numStars"
@@ -676,24 +676,7 @@ export default defineComponent({
       reservedInfoMap,
       fetchDonateeInfo,
       getInfoForDonator,
-
-      onSubmit (evt) {
-        const formData = new FormData(evt.target)
-        const data = []
-
-        for (const [ name, value ] of formData.entries()) {
-          data.push({
-            name,
-            value
-          })
-        }
-
-        ratingResult.value = data
-      },
-
-      async submitReview() {
-        console.log("submitReview function entered.");        
-
+      async submitReview() {    
         const reviewedUserID = ref(null);
         const reviewerUserID = ref(null);
 
