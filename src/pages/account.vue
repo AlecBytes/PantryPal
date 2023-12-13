@@ -213,6 +213,16 @@ export default defineComponent({
     const userInfo = ref({});
     const reservedInfoMap = ref(new Map());
     
+    // TODO: I think some of these functions can be moved into fecthDonations
+    onMounted(async () => {
+      fetchDonations();
+      fetchMessages();
+      fetchUserInfo();
+      fetchDonateeInfo();
+      getReviewedDonations();
+      getMyRatingTotal();
+    });
+
     const fetchDonations = async () => {
       try {
         // get current user id
@@ -301,37 +311,22 @@ export default defineComponent({
       }
     };
 
-    onMounted(async () => {
-      fetchDonations();
-      fetchMessages();
-      fetchUserInfo();
-      fetchDonateeInfo();
-
-      // let todayDate = new Date();
-      // today.value = todayDate.toISOString().split('T')[0];
-      // todayDate.setHours(0, 0, 0, 0);
-
-      // Check review status for completed donnations when the page is mounted
-      await getReviewedDonations();
-      await getMyRatingTotal();
-    });
-
     const cancel = async (pantry_item) => {
-
-     console.log('Cancel button clicked.');
      try {
-        // get current user id
         const { data: { user } } = await supabase.auth.getUser()
         const currentUser_id = user.id;
 
-        // If current user is the donatee then set reserved to false and donatee_id to null
-        // Else, user is donator so cancel by setting expiration date to today
+        // Current user is the donatee so cancel by setting reserved to false and donatee to null
         if (currentUser_id == pantry_item.donatee_id)
         {
+          // donation is no longer reserved and donatee is null
+          const { error } = await supabase
+            .from('donations')
+            .update([{reserved: false, donatee_id: null}])
+            .eq('id', pantry_item.id);
+          if (error) { console.error('Error setting reserved to false and donatee to null:', error.message) };
 
-          const { error } = await supabase.from('donations').update([{reserved: false, donatee_id: null}]).eq('id', pantry_item.id)
-
-          // update notifications in db for donator since donatee cancelled
+          // notify donator that the donation has been cancelled by donatee
           const { error: notificationError } = await supabase
             .from('Notifications')
             .insert({
@@ -341,115 +336,84 @@ export default defineComponent({
               time: new Date()
             })
             .eq('donation_id', pantry_item.id);
-
-          if (notificationError) {
-            console.error('Error updating Notifications:', notificationError);
-            return;
-          } else {
-            console.log('Notification successfully added.');
-          }
+          if (notificationError) {console.error('Error notifying donator of cancellation:', notificationError.message)};
 
         }
+        // current user is the donator so cancel by setting expiration date to today
         else if (currentUser_id == pantry_item.donator_id)
         {
-
-          // Update the 'reserved' column to false in Supabase and expires to today
+          // Cancel donation by setting expiration date to today
           const { error } = await supabase
                 .from('donations')
                 .update([{ date_expires:new Date()
                   .toISOString()}])
                   .eq('id', pantry_item.id)
+            if (error) { console.error('Error setting donation expiration:', error.message) };
 
-            if (error) {
-              console.error('Error fetching donations:', error);
-              return;
-            }
-            else
-            {
-              console.log("Donation successfully cancelled.")
-
-             }
-
-          // update notifications in db for the donatee since donator cancelled
-          const { error: notificationError } = await supabase
-            .from('Notifications')
-            .insert({
-              user_id: pantry_item.donatee_id,
-              donation_id: pantry_item.id,
-              notification_type: 'New Cancellation',
-              time: new Date()
-            })
-            .eq('donation_id', pantry_item.id);
-
-          if (notificationError) {
-            console.error('Error updating Notifications:', notificationError);
-            return;
-          } else {
-            console.log('Notification successfully added.');
+          // Notify donatee that the donation has been cancelled by donator
+          if (pantry_item.donatee_id != null) {
+            const { error: notificationError } = await supabase
+              .from('Notifications')
+              .insert({
+                user_id: pantry_item.donatee_id,
+                donation_id: pantry_item.id,
+                notification_type: 'New Cancellation',
+                time: new Date()
+              })
+              .eq('donation_id', pantry_item.id);
+            if (notificationError) { console.error('Error notifying donatee of cancellation:', notificationError.message) };
           }
 
         }
         else
         {
-          console.log("current user id does not match donator_id or donatee_id");
+          console.log("Error identifying current user");
         }
 
-        // Remove the cancelled donation from the active donations array
-        window.location.reload();
+        // update location of donation on page
+        pantryItems_expired.value.push(pantry_item);
+        pantryItems_active.value.splice(pantryItems_active.value.indexOf(pantry_item), 1);
 
      } catch (error) {
-        console.error('Failed cancel donation:', error.message);
+        console.error('Caught exception canceling donation', error.message);
      }
+    };
 
-
-
-    }
     const showActive = () => {
-      console.log('Show Active button clicked.');
       showActiveItems.value = !showActiveItems.value;
     }
     const showPast = () => {
-      console.log('Show Past button clicked.');
       showPastItems.value = !showPastItems.value;
     }
     const showSettings = () => {
-      console.log('Show Settings button clicked.');
       showAccountSettings.value = !showAccountSettings.value;
     }
     const showNotifications = () => {
-      console.log('Show Notifications button clicked.');
       showAccountNotifications.value = !showAccountNotifications.value;
     }
     const dismissBanner = () => {
-      console.log('Dismiss Banner button clicked.');
       banner.value = !banner.value;
     }
     const dismiss = async (index) => {
-      console.log('Dismiss button clicked.');
-
-      // Get the ID of the message to dismiss
       const messageId =index;
-
       try {
-        // Update the 'dismissed' column to true in Supabase
+        // update DB
         let { data, error } = await supabase
         .from('Notifications')
         .update({ dismissed: true })
         .eq('id', messageId);
-
         if (error) {
           throw new Error('Failed to dismiss message, error: ' + error.message);
         }
 
-      console.log('Message dismissed:', data);
-
-      // Remove the dismissed message from the local messages array
+      // remove notification from page
       fetchMessages();
 
         } catch (error) {
           console.error('Failed to dismiss message:', error.message);
         }
-    }
+    };
+
     const formatMessageTime = (time) => {
       const dateObject = new Date(time);
       const formatter = new Intl.DateTimeFormat('default', {
@@ -466,7 +430,6 @@ export default defineComponent({
     };
 
     const showReview = async (donation) => {
-      console.log('Add review button clicked.');
       selected_donation.value = donation;
       clickedReview.value = true;
     };
@@ -479,9 +442,8 @@ export default defineComponent({
         .from('reviews')
         .select('donation_id')
         .eq('reviewer_id', user.id);
-      if (error) {
-        console.error('Error checking for review:', error.message);
-      }
+      if (error) { console.error('Error checking for review:', error.message) };
+
       let uniqueDonations = new Set(reviewedDonations.value);
       for (let i = 0; i < data.length; i++) {
         uniqueDonations.add(data[i].donation_id);
@@ -565,7 +527,6 @@ export default defineComponent({
     };
 
     const completeOrder = async (pantry_item) => {
-
       //update pickup time in the database and set date expires to today
       const currentTime = new Date().toISOString();
       const currentDate = new Date().toLocaleDateString('en-US');
@@ -580,10 +541,7 @@ export default defineComponent({
           }
         ])
         .eq('id', pantry_item.id);
-      }
-      catch (error) {
-        console.error('Failed to complete order:', error.message);
-      }
+      
 
       // get current user id
       const { data: { user } } = await supabase.auth.getUser()
@@ -640,10 +598,14 @@ export default defineComponent({
         console.log("current user id does not match donator_id or donatee_id");
       }
 
-      //Reload the window to move the donation to the past donations section
-      window.location.reload();
+      // update location of donation on page
+      pantryItems_active.value.splice(pantryItems_active.value.indexOf(pantry_item), 1);
+      pantryItems_expired.value.push(pantry_item);
 
-
+      }
+      catch (error) {
+        console.error('Caught error completing order:', error.message);
+      }
 
     };
 
@@ -775,7 +737,7 @@ export default defineComponent({
         }
         // Reset value of stars to 0 for future reviews
         numStars.value = 0;
-        await getReviewedDonations();
+        getReviewedDonations();
       }
     }
   }
