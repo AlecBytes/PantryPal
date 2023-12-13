@@ -2,6 +2,7 @@
   
   <q-page padding class="q-gutter-md">
 
+    <!-- Notifications -->
     <q-banner dense v-if="messages && messages.length > 0 && banner" inline-actions class="text-white bg-secondary">
       <q-icon name="notifications_active" color="primary" size="sm" />
 
@@ -12,94 +13,101 @@
       </template>
 
     </q-banner>
-
     <q-card>
         <div class="text-subtitle1">
           <q-btn flat color="secondary" :icon="showAccountNotifications ? 'expand_more' : 'chevron_right'" @click="showNotifications" />
           Notifications
         </div>
     </q-card>
+    <q-list dark row v-if="showAccountNotifications" bordered dense separator class="rounded-borders">
+      <q-item class="bg-secondary text-white" v-for="(message,index) in messages" :key="index">
 
-        <q-list dark row v-if="showAccountNotifications" bordered dense separator class="rounded-borders">
-          <q-item class="bg-secondary text-white" v-for="(message,index) in messages" :key="index">
+        <q-item-section side>
+          <q-btn flat text-color="grey" size="sm" dense round icon="delete" @click="dismiss(message.id)"/>
+        </q-item-section>
 
-            <q-item-section side>
-              <q-btn flat text-color="grey" size="sm" dense round icon="delete" @click="dismiss(message.id)"/>
-            </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ message.notification_type }}</q-item-label>
+          <q-item-label lines="1">{{ message.donations.food }}</q-item-label>
+        </q-item-section>
 
-            <q-item-section>
-              <q-item-label>{{ message.notification_type }}</q-item-label>
-              <q-item-label lines="1">{{ message.donations.food }}</q-item-label>
-            </q-item-section>
+        <q-item-section side>
+          <q-item-label>
+            {{ new Date(message.time).toLocaleDateString([], { month: 'short', day: '2-digit' }) }}
+            {{ new Date(message.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
+          </q-item-label>
+        </q-item-section>
 
-            <q-item-section side>
-              <q-item-label>
-                {{ new Date(message.time).toLocaleDateString([], { month: 'short', day: '2-digit' }) }}
-                {{ new Date(message.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
-              </q-item-label>
-            </q-item-section>
+      </q-item>
+    </q-list>
 
-          </q-item>
-        </q-list>
+    <!-- Account Info -->
+    <q-card style="display: flex; height: 235px;">
 
-
-        <q-card style="display: flex; height: 235px;">
-
-          <!-- My Community Rating Section -->
-          <q-card style="flex: 3; display: flex; align-items: center; justify-content: center;">
-          <!-- My Community Rating Section -->
-          <div class="q-pa-md">
-            <div class="q-gutter-y-md" style="text-align: center; margin-block: 8px; margin-left: 12px;">
-              <div style="display: flex; align-items: center; justify-content: center;">
-                <div class="text-h6">My Community Rating</div>
-              </div>
-              <div style="display: flex; align-items: center; justify-content: center;">
-                <q-rating
-                  v-model="myRatingTotal"
-                  size="2em"
-                  color="secondary"
-                  icon="star_border"
-                  icon-half="star_half"
-                  icon-selected="star"
-                  readonly
-                />
-              </div>
+      <!-- User Rating -->
+      <!-- <q-card style="flex: 3; display: flex; align-items: center; justify-content: center;">
+        <div class="q-pa-md">
+          <div class="q-gutter-y-md" style="text-align: center; margin-block: 8px; margin-left: 12px;">
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <div class="text-h6">My Community Rating</div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <q-rating
+                v-model="myRatingTotal"
+                size="2em"
+                color="secondary"
+                icon="star_border"
+                icon-half="star_half"
+                icon-selected="star"
+                readonly
+              />
             </div>
           </div>
-        </q-card>
+        </div>
+      </q-card> -->
 
 
-        <!-- Account Info Section -->
-        <q-card style="flex: 12; max-height: 10px;">
-          <div class="q-pa-xs">
-            <q-card-section>
-              <div class="text-h6">Account Info</div>
+      <!-- Account Info Section -->
+      <q-card style="flex: 12; max-height: 10px;">
+        <div class="q-pa-xs">
+          <q-card-section>
+            <div class="row">
+              <div class="text-h6 column">Account Info</div>
+              <q-rating column
+                v-model="myRatingTotal"
+                size="sm"
+                color="secondary"
+                icon="star_border"
+                icon-half="star_half"
+                icon-selected="star"
+                readonly
+              />
+            </div>
+            
+            <q-separator light />
 
-              <!-- User Info -->
-              <q-separator light />
-
-              <q-card-section class="text-fit">
-                <div class="text-body1">Account Role: {{ userInfo.role }}</div>
-                <div class="text-body1">Organization Name: {{ userInfo.organization }}</div>
-                <div class="text-body1">Account Owner: {{ userInfo.name }}</div>
-                <div class="text-body1">Email: {{ userInfo.email }}</div>
-                <div class="text-body1">Phone Number: {{ userInfo.phone }}</div>
-                <div class="text-body1">Current Address: {{ userInfo.address }}, {{ userInfo.city }} {{ userInfo.state }} {{ userInfo.zip }}</div>
-              </q-card-section>
-
+            <q-card-section class="text-fit">
+              <div class="text-body1">Account Role: {{ userInfo.role }}</div>
+              <div class="text-body1">Organization Name: {{ userInfo.organization }}</div>
+              <div class="text-body1">Account Owner: {{ userInfo.name }}</div>
+              <div class="text-body1">Email: {{ userInfo.email }}</div>
+              <div class="text-body1">Phone Number: {{ userInfo.phone }}</div>
+              <div class="text-body1">Current Address: {{ userInfo.address }}, {{ userInfo.city }} {{ userInfo.state }} {{ userInfo.zip }}</div>
             </q-card-section>
-          </div>
-        </q-card>
 
+          </q-card-section>
+        </div>
       </q-card>
 
+    </q-card>
+
+    <!--Active Donations-->
     <q-card>
         <div class="text-subtitle1">
           <q-btn flat color="secondary" :icon="showActiveItems ? 'expand_more' : 'chevron_right'" @click="showActive" />
           Active Donations
         </div>
     </q-card>
-
     <div v-if="showActiveItems" class="row q-gutter-md" style="margin-top: 5px;">
       <q-card class="donationCards bg-secondary text-white" v-for="(pantry_item, index) in pantryItems_active" :key="index">
         <q-card-section>
@@ -127,13 +135,13 @@
       </q-card>
     </div>
 
+    <!--Past Donations-->
     <q-card>
         <div class="text-subtitle1">
           <q-btn @click="showPast" flat color="secondary" :icon="showPastItems ? 'expand_more' : 'chevron_right'" />
           Past Donations
         </div>
     </q-card>
-
     <div v-if="showPastItems" class="row q-gutter-md" style="margin-top: 5px;">
       <q-card class="donationCards bg-secondary text-white" v-for="(pantry_item, index) in pantryItems_expired" :key="index">
         <q-card-section >
@@ -805,7 +813,7 @@ export default defineComponent({
   .donationCards
   {
     width: 100%;
-    max-width: 250px;
+    max-width: 350px;
     height: 350px;
   }
 

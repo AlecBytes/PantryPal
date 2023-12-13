@@ -27,7 +27,7 @@ This file contains the navigation bar and the router view. -->
           >
             <q-list style="min-width: 100px">
               <q-item clickable to="/profile">
-                <q-item-section>{{ userEmail }}</q-item-section>
+                <q-item-section class="text-secondary">{{ userEmail }}</q-item-section>
               </q-item>
               <q-separator />
               <q-item clickable @click="logOut" data-cy="logout-btn">

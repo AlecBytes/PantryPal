@@ -9,7 +9,6 @@ and it also notifies the donator when items are reserved-->
         class="glossy"
         color="accent"
         label="Clear Filters"
-        icon="filter_list"
         @click="clearFilters"
       />
       <!-- Company filter dropdown -->
@@ -515,7 +514,7 @@ export default {
   .donationCards
   {
     width: 100%;
-    max-width: 250px;
+    max-width: 350px;
     height: 350px;
   }
 
