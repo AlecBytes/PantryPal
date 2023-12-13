@@ -1,6 +1,6 @@
 <template>
   
-  <q-page padding class="q-gutter-md" style="background-color: black;">
+  <q-page padding class="q-gutter-md">
 
     <q-banner dense v-if="messages && messages.length > 0 && banner" inline-actions class="text-white bg-secondary">
       <q-icon name="notifications_active" color="primary" size="sm" />

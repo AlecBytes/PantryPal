@@ -52,7 +52,7 @@ This file contains the navigation bar and the router view. -->
     </q-header>
 
     <!-- The vue pages are rendered here -->
-    <q-page-container class="bg-image">
+    <q-page-container  style="background-color: #211501;">
       <router-view />
     </q-page-container>
 
@@ -160,7 +160,7 @@ export default defineComponent({
 
 <style>
   .bg-image {
-    background-image: url("https://preudbpdnhcigtnuiuit.supabase.co/storage/v1/object/public/images/Gradient2.png?t=2023-12-01T19%3A31%3A08.969Z");
+    background-image: url("https://preudbpdnhcigtnuiuit.supabase.co/storage/v1/object/public/images/bg.png");
     background-size: cover;
   }
 </style>

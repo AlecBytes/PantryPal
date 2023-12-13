@@ -1,7 +1,7 @@
 <!--This file contains the pantry page that lists all active donations that can be reserved. It displays the overall review of the donator
 and it also notifies the donator when items are reserved-->
 <template>
-  <q-page padding style="background-color: black;">
+  <q-page padding>
 
     <!-- <q-input rounded outlined v-model="searchText" label="Search..." /> -->
     <div class="q-gutter-md row justify-center" >
