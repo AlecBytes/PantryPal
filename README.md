@@ -2,16 +2,18 @@
 
 ## About
 
+I'm still working on this readme, it's incomplete.
+
 ### Origin
 
-This app started as...
+This app started as a group project in Introduction to Software Engineering at the University of Florida. The prompts was.... There were four contributers. I (Alec) was the main developer and contributed the most lines of code. Since the the projects completion...
 
 ### Techincal Details
 
-Programming language: JavaScript
-Frameworks: Vue.js, Quasar
-Database: Supabase PostgreSQL
-User authentication: Supabase Auth
+Programming language: JavaScript  
+Frameworks: Vue.js, Quasar  
+Database: Supabase PostgreSQL  
+User authentication: Supabase Auth  
 
 ## Developer Guide
 
