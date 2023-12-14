@@ -10,10 +10,10 @@ This app started as a group project in Introduction to Software Engineering at t
 
 ### Techincal Details
 
-Programming language: JavaScript  
-Frameworks: Vue.js, Quasar  
-Database: Supabase PostgreSQL  
-User authentication: Supabase Auth  
+- Programming language: JavaScript
+- Frameworks: Vue.js, Quasar  
+- Database: Supabase PostgreSQL  
+- User authentication: Supabase Auth  
 
 ## Developer Guide
 
