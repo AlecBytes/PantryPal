@@ -1,4 +1,4 @@
-# CEN3031group15
+# PantryPal
 
 ## About
 
