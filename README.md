@@ -17,6 +17,10 @@ This app started as a group project in Introduction to Software Engineering at t
 
 ## Developer Guide
 
+### Which files to look at
+
+Most of the intersting code is in the vue page files in the src directory.
+
 ### Setup environment
 
 1. npm install
