@@ -4,9 +4,18 @@
 
 I'm still working on this readme, it's incomplete.
 
-### Origin
+### Problem
 
-This app started as a group project in Introduction to Software Engineering at the University of Florida. The prompts was.... There were four contributers. I (Alec) was the main developer and contributed the most lines of code. Since the the projects completion...
+According to Feeding America, a nonprofit foodbank network, 34 million people in the United States are food insecure with 9 million of those people being children. It is estimated that roughly 119 billion pounds of food is wasted annually.
+
+### Solution
+
+To combat the combined problem of food insecurity and waste, we propose a software solution that connects food donation organizations with businesses who want to reduce their food waste and give back to the community
+
+### Architecturual Design
+
+![image](https://github.com/user-attachments/assets/000ef3d3-657b-4b3e-8071-195e989b9789)
+
 
 ### Techincal Details
 
