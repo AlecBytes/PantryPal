@@ -24,6 +24,14 @@ To combat the combined problem of food insecurity and waste, we propose a softwa
 - Database: Supabase PostgreSQL  
 - User authentication: Supabase Auth  
 
+### Spring 0
+
+![image](https://github.com/user-attachments/assets/6f6a0619-d544-4f57-9855-7728d0e5da9d)
+
+### Sprint 1
+
+![image](https://github.com/user-attachments/assets/559bb532-84a0-4589-aa1d-47eaa6b6b89c)
+
 ## Developer Guide
 
 ### Which files to look at
