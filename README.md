@@ -16,6 +16,8 @@ To combat the combined problem of food insecurity and waste, we propose a softwa
 
 ### The App
 
+Feel Free to create an account.
+
 https://pantrypal-lac.vercel.app/#/
 
 #### Landing Page
