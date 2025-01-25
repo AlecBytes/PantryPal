@@ -6,14 +6,6 @@ Welcome to PantryPal! Connect with donators or food charities to make a differen
 
 Created by four students at the University of Florida, PantryPal seeks to impact communites across the US. For restaurants, fast food chains, hotels, grocery stores, and more who have excess food or food waste, PantryPal is an app that allows for businesses to easily donate their leftovers to local shelters and community organizations. Unlike complicated, larger scale food donation operations PantryPal has a local and community-centric focus, making food donation a simple and seamless experience between community organizations and establishments.
 
-### Problem
-
-According to Feeding America, a nonprofit foodbank network, 34 million people in the United States are food insecure with 9 million of those people being children. It is estimated that roughly 119 billion pounds of food is wasted annually.
-
-### Solution
-
-To combat the combined problem of food insecurity and waste, we propose a software solution that connects food donation organizations with businesses who want to reduce their food waste and give back to the community
-
 ### The App
 
 Feel Free to create an account.
