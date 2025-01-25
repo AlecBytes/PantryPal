@@ -2,7 +2,9 @@
 
 ## About
 
-I'm still working on this readme, it's incomplete.
+Welcome to PantryPal! Connect with donators or food charities to make a difference in your community.
+
+Created by four students at the University of Florida, PantryPal seeks to impact communites across the US. For restaurants, fast food chains, hotels, grocery stores, and more who have excess food or food waste, PantryPal is an app that allows for businesses to easily donate their leftovers to local shelters and community organizations. Unlike complicated, larger scale food donation operations PantryPal has a local and community-centric focus, making food donation a simple and seamless experience between community organizations and establishments.
 
 ### Problem
 
@@ -11,6 +13,26 @@ According to Feeding America, a nonprofit foodbank network, 34 million people in
 ### Solution
 
 To combat the combined problem of food insecurity and waste, we propose a software solution that connects food donation organizations with businesses who want to reduce their food waste and give back to the community
+
+### The App
+
+https://pantrypal-lac.vercel.app/#/
+
+#### Landing Page
+
+![home page pantry pal](https://github.com/user-attachments/assets/853163dc-cb5b-42fd-8089-26bef848ee37)
+#### Log In
+
+![log in](https://github.com/user-attachments/assets/e9ee5daf-518f-490f-b867-0ceca68ed284)
+
+#### Profile
+
+![profile](https://github.com/user-attachments/assets/ca65b2ca-cf3f-43f0-bc42-f16c4cf3202c)
+
+#### Donate
+
+![donate](https://github.com/user-attachments/assets/12b37aba-1110-4839-9309-2bc5ca57a11d)
+
 
 ### Architecturual Design
 
