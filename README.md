@@ -1,60 +1,73 @@
-# PantryPal
+# **PantryPal – Community Food Donation Made Simple**  
 
-## About
+## 🌍 About  
 
-Welcome to PantryPal! Connect with donators or food charities to make a difference in your community.
+Welcome to **PantryPal**! The idea for this app is a platform that connects **donators** and **food charities** to make a tangible impact in communities across the U.S.  
 
-Created by four students at the University of Florida, PantryPal seeks to impact communites across the US. For restaurants, fast food chains, hotels, grocery stores, and more who have excess food or food waste, PantryPal is an app that allows for businesses to easily donate their leftovers to local shelters and community organizations. Unlike complicated, larger scale food donation operations PantryPal has a local and community-centric focus, making food donation a simple and seamless experience between community organizations and establishments.
+Built by four students at the **University of Florida**, PantryPal simplifies food donation for **restaurants, grocery stores, hotels, and fast food chains**. By focusing on **local and community-centric donations**, it streamlines the process of connecting businesses with shelters and food banks—making food donation seamless and accessible.  
 
-### The App
+---
 
-Feel Free to create an account.
+## 📱 Try the App  
 
-https://pantrypal-lac.vercel.app/#/
+🔗 **Live App:** [PantryPal on Vercel](https://pantrypal-lac.vercel.app/#/)  
 
-#### Landing Page
+Feel free to create an account and explore!
 
-![home page pantry pal](https://github.com/user-attachments/assets/853163dc-cb5b-42fd-8089-26bef848ee37)
-#### Log In
+## ⭐ Support the Project  
+If you find this project useful, please consider **starring** ⭐ the repo! Your support helps others discover it and motivates further development.  
 
-![log in](https://github.com/user-attachments/assets/e9ee5daf-518f-490f-b867-0ceca68ed284)
+---
 
-#### Profile
+## 🖥️ **Screenshots**  
 
-![profile](https://github.com/user-attachments/assets/ca65b2ca-cf3f-43f0-bc42-f16c4cf3202c)
+### **Landing Page**  
+![home page pantry pal](https://github.com/user-attachments/assets/853163dc-cb5b-42fd-8089-26bef848ee37)  
 
-#### Donate
+### **Log In**  
+![log in](https://github.com/user-attachments/assets/e9ee5daf-518f-490f-b867-0ceca68ed284)  
 
-![donate](https://github.com/user-attachments/assets/12b37aba-1110-4839-9309-2bc5ca57a11d)
+### **Profile**  
+![profile](https://github.com/user-attachments/assets/ca65b2ca-cf3f-43f0-bc42-f16c4cf3202c)  
 
+### **Donate**  
+![donate](https://github.com/user-attachments/assets/12b37aba-1110-4839-9309-2bc5ca57a11d)  
 
-### Architecturual Design
+---
 
-![image](https://github.com/user-attachments/assets/000ef3d3-657b-4b3e-8071-195e989b9789)
+## 🏗 **Architectural Design**  
+![image](https://github.com/user-attachments/assets/000ef3d3-657b-4b3e-8071-195e989b9789)  
 
+---
 
-### Techincal Details
+## 🛠 **Tech Stack**  
 
-- Programming language: JavaScript
-- Frameworks: Vue.js, Quasar  
-- Database: Supabase PostgreSQL  
-- User authentication: Supabase Auth  
+### **Frontend**  
+- **Vue.js** (JavaScript framework)  
+- **Quasar Framework** (UI framework for Vue)  
 
-### Spring 0
+### **Backend**  
+- **Supabase PostgreSQL** (Database)  
+- **Supabase Auth** (User authentication)  
 
-![image](https://github.com/user-attachments/assets/6f6a0619-d544-4f57-9855-7728d0e5da9d)
+---
 
-### Sprint 1
+## 🚀 Development Sprints  
 
-![image](https://github.com/user-attachments/assets/559bb532-84a0-4589-aa1d-47eaa6b6b89c)
+### **Sprint 0**  
+![image](https://github.com/user-attachments/assets/6f6a0619-d544-4f57-9855-7728d0e5da9d)  
 
-## Developer Guide
+### **Sprint 1**  
+![image](https://github.com/user-attachments/assets/559bb532-84a0-4589-aa1d-47eaa6b6b89c)  
 
-### Which files to look at
+---
 
-Most of the intersting code is in the vue page files in the src directory.
+## 🛠 **Developer Guide**  
 
-### Setup environment
+### **Key Files**  
+Most of the core functionality is in the **Vue page files** located in the `/src` directory.  
+
+### **Setup Environment** 
 
 1. npm install
 2. Intall quasar CLI
