@@ -14,8 +14,9 @@ Built by four students at the **University of Florida**, PantryPal simplifies fo
 
 Feel free to create an account and explore!
 
-## ⭐ Support the Project  
-If you find this project useful, please consider **starring** ⭐ the repo! Your support helps others discover it and motivates further development.  
+## ⭐ Please Star this Repo ⭐
+
+If you find this project useful, please consider **starring** ⭐ the repo! Your support helps and motives me.  
 
 ---
 
