@@ -8,6 +8,11 @@ Built by four students at the **University of Florida**, PantryPal simplifies fo
 
 ---
 
+⚠️ App Status
+
+Note: The database and backend services for PantryPal are no longer live.
+As a result, the hosted web app is currently non-functional. Features such as login, registration, and data interaction will not work.
+
 ## 📱 Try the App  
 
 🔗 **Live App:** [PantryPal on Vercel](https://pantrypal-lac.vercel.app/#/)  
